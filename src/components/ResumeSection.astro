@@ -1,0 +1,52 @@
+---
+// Types
+export interface ResumeItem {
+  role?: string
+  production?: string
+  company?: string
+}
+
+interface Props {
+  title: string
+  items: ResumeItem[]
+}
+
+const { title, items } = Astro.props
+---
+
+<section class="mb-8">
+  <h2
+    class="text-lg font-semibold mb-3 border-b border-neutral-300 pb-1 tracking-wide uppercase"
+  >
+    {title}
+  </h2>
+  <ul class="space-y-2">
+    {
+      (title.includes('WORKSHOPS') || title.includes('THEATRE')) &&
+        items.map((item) => (
+          <li class="grid grid-cols-1 sm:grid-cols-3 gap-2 md:gap-4 text-sm">
+            <div class="truncate">{item.production}</div>
+            <div class="truncate">{item.role ?? ''}</div>
+            <div class="truncate">{item.company ?? ''}</div>
+          </li>
+        ))
+    }
+    {
+      title.includes('TRAINING') &&
+        items.map((item) => (
+          <li class="grid grid-cols-1 sm:grid-cols-2 gap-2 md:gap-4 text-sm">
+            <div class="truncate">{item.production}</div>
+            <div class="truncate">{item.company ?? ''}</div>
+          </li>
+        ))
+    }
+    {
+      title.includes('SKILLS') &&
+        items.map((item) => (
+          <li class="text-sm">
+            <div>{item.role}</div>
+          </li>
+        ))
+    }
+  </ul>
+</section>

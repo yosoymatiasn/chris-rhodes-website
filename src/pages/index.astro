@@ -1,16 +1,39 @@
 ---
+import { Image } from 'astro:assets'
+import headshot from '../assets/headshot.jpg'
+import Layout from '../layouts/Layout.astro'
+import { Picture } from 'astro:assets'
 
+const navLinks = [
+  { name: 'Résumé', href: '/resume' },
+  { name: 'Media', href: '/media' },
+]
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout>
+  <!-- Hero Banner -->
+  <section class="">
+    <div class="h-[72vh] overflow-hidden absolute left-0">
+      <Image
+        src={headshot}
+        alt="Christopher Rhodes Headshot"
+        class="object-cover object-center h-full"
+        loading={'eager'}
+        layout="full-width"
+      />
+
+      <div
+        class="absolute bottom-10 w-full flex flex-col items-center justify-center text-center px-4"
+      >
+        <h1
+          class="text-4xl md:text-6xl font-bold tracking-tight uppercase drop-shadow-lg"
+        >
+          Christopher Rhodes
+        </h1>
+        <p class="mt-2 text-sm md:text-base text-neutral-300 tracking-wide">
+          Actor · Musician
+        </p>
+      </div>
+    </div>
+  </section>
+</Layout>

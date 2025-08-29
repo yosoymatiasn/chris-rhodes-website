@@ -1,0 +1,251 @@
+---
+import { Image } from 'astro:assets'
+import Layout from '../layouts/Layout.astro'
+import headshot from '../assets/headshot.jpg'
+
+interface ResumeItem {
+  role?: string
+  production?: string
+  company?: string
+  skills?: string[]
+}
+
+const theater: ResumeItem[] = [
+  {
+    production: 'THE PIN-UP GIRLS',
+    role: 'Joel',
+    company: 'Playhouse on Park',
+  },
+  {
+    production: 'BANDSTAND',
+    role: 'Wayne Wright',
+    company: 'Playhouse on Park',
+  },
+  {
+    production: 'BANDSTAND',
+    role: 'Wayne Wright',
+    company: 'Summer Lyric Theatre',
+  },
+  {
+    production: 'BANDSTAND',
+    role: 'Ensemble / Wayne Wright US',
+    company: 'Texas A&M',
+  },
+  {
+    production: 'CABARET TOUR',
+    role: 'Victor / Trombone / Cliff US',
+    company: 'B.T. McNicholl',
+  },
+  {
+    production: 'ONE MINUTE PLAY FEST.',
+    role: 'Ensemble',
+    company: 'Nathaniel P. Claridad',
+  },
+  {
+    production: 'CARNIVAL',
+    role: 'Angelo / Ensemble',
+    company: 'Summer Stock Austin',
+  },
+  {
+    production: 'THE ADDAMS FAMILY',
+    role: 'Lurch',
+    company: 'Summer Stock Austin',
+  },
+  {
+    production: 'DOG SEES GOD',
+    role: 'CB',
+    company: 'Flexible Grey Theatre Company',
+  },
+]
+
+const workshops: ResumeItem[] = [
+  {
+    production: 'CRUMBS OF JOY',
+    role: 'Sergio',
+    company: 'In Scena! Italian Theatre Festival NY',
+  },
+  {
+    production: 'TWELFTH NIGHT',
+    role: 'Duke Orsino',
+    company: 'The New York Shakespeare Exchange',
+  },
+  {
+    production: 'LADY CAPULET',
+    role: 'Stage Directions',
+    company: '29th St. Playwright Collective',
+  },
+]
+
+const training: ResumeItem[] = [
+  {
+    production: 'Specialization in Acting and Directing',
+    company: 'Texas A&M University, BA Theatre Arts',
+  },
+  { production: 'Basic Stage Combat', company: 'Burton Tudesco' },
+  { production: 'Vocal Coaching', company: 'Tyler Knauf' },
+  {
+    production: 'Movement',
+    company: 'Bluecoats Drum and Bugle Corps / Jim Moore & John Vanderkolff',
+  },
+]
+
+const skills: ResumeItem[] = [
+  {
+    skills: [
+      'Musician (Trombone, Guitar)',
+      'Whistling',
+      'Fake Flatulence',
+      'Gold',
+      'Passport',
+    ],
+  },
+]
+---
+
+<Layout>
+  <!-- STATS -->
+  <section class="max-w-4xl mt-10 mx-auto mb-20">
+    <div
+      class="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-10 items-start text-gray-300"
+    >
+      <div class="w-full max-w-xs">
+        <Image
+          src={headshot}
+          width={400}
+          alt="Christopher Rhodes headshot"
+          class="rounded shadow-md w-full h-auto object-cover"
+        />
+      </div>
+
+      <div class="flex flex-col space-y-4">
+        <h2
+          class="text-xl font-semibold text-white tracking-wide border-b border-gray-700 pb-4"
+        >
+          <span class="p-2 mr-4 bg-gray-800 rounded-lg">AEA</span>
+          Christopher Rhodes
+        </h2>
+        <div>
+          <span class="font-medium text-gray-400">Location:</span>
+          <span class="ml-1">New York City</span>
+        </div>
+
+        <div>
+          <span class="font-medium text-gray-400">Representation:</span>
+          Julia Schell |
+          <a
+            href="mailto:julia@brilliant-talent.com"
+            class="text-blue-400 hover:underline"
+          >
+            julia@brilliant-talent.com
+          </a>
+        </div>
+        <a
+          href="/resume.pdf"
+          target="_blank"
+          class="flex items-center self-start gap-1 p-3 font-medium text-white hover:bg-gray-400 rounded shadow bg-neutral-700 transition"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            class="w-3.5 h-3.5"
+          >
+            <path d="M13 10V3H7v7H4l6 6 6-6h-3zM4 18h12v-2H4v2z"></path>
+          </svg>
+          Download resume
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- THEATRE -->
+  <section class="mb-14 mx-auto border-t-2 border-gray-400/20 pt-4">
+    <div class="grid grid-cols-1 md:grid-cols-[150px_1fr] gap-x-40">
+      <h2 class="text-2xl text-gray-400 font-bold tracking-wide pb-1 mb-3">
+        Theater
+      </h2>
+      <ul class="flex flex-col gap-4">
+        {
+          theater.map((item) => (
+            <li class=" text-gray-200">
+              <div class="flex flex-col">
+                <p class="capitalize">
+                  {item.production?.toLowerCase()} | {item.company}
+                </p>
+                <p class="text-gray-400">{item.role}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- WORKSHOPS / OTHER -->
+  <section class="mb-14 mx-auto border-t-2 border-gray-400/20 pt-4">
+    <div class="grid grid-cols-1 md:grid-cols-[150px_1fr] gap-x-40">
+      <h2
+        class="flex flex-col text-2xl text-gray-400 font-bold tracking-wide pb-1 mb-3"
+      >
+        <span>Workshops</span>
+        <span>Readings</span>
+        <span>Other</span>
+      </h2>
+      <ul class="flex flex-col gap-4">
+        {
+          workshops.map((item) => (
+            <li class=" text-gray-200">
+              <div class="flex flex-col">
+                <p class="capitalize">
+                  {item.production?.toLowerCase()} | {item.company}
+                </p>
+                <p class="text-gray-400">{item.role}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- TRAINING -->
+  <section class="mb-14 mx-auto border-t-2 border-gray-400/20 pt-4">
+    <div class="grid grid-cols-1 md:grid-cols-[150px_1fr] gap-x-40">
+      <h2 class="text-2xl text-gray-400 font-bold tracking-wide pb-1 mb-3">
+        Training
+      </h2>
+      <ul class="flex flex-col gap-4">
+        {
+          training.map((item) => (
+            <li class=" text-gray-200">
+              <div class="flex flex-col">
+                <p class="capitalize">{item.production?.toLowerCase()}</p>
+                <p class="text-gray-400">{item.company}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="mb-14 mx-auto border-t-2 border-gray-400/20 pt-4">
+    <div class="grid grid-cols-1 md:grid-cols-[150px_1fr] gap-x-40">
+      <h2 class="text-2xl text-gray-400 font-bold tracking-wide pb-1 mb-3">
+        Special skills
+      </h2>
+      <ul class="flex flex-wrap gap-4">
+        {
+          skills[0].skills!.map((item) => (
+            <li class=" leading-tight text-gray-200">
+              <p class="bg-gray-800 rounded px-3 py-2 shadow-sm hover:bg-gray-700 transition">
+                {item}
+              </p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+</Layout>

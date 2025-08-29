@@ -1,0 +1,121 @@
+---
+import ResumeSection, { type ResumeItem } from './ResumeSection.astro'
+
+const theatre: ResumeItem[] = [
+  {
+    production: 'THE PIN-UP GIRLS',
+    role: 'Joel',
+    company: 'Playhouse on Park / Darlene Zoller',
+  },
+  {
+    production: 'BANDSTAND',
+    role: 'Wayne Wright',
+    company: 'Playhouse on Park / Sean Harris',
+  },
+  {
+    production: 'BANDSTAND',
+    role: 'Wayne Wright',
+    company: 'Summer Lyric Theatre / Diane Lala',
+  },
+  {
+    production: 'BANDSTAND',
+    role: 'Ensemble / Wayne Wright US',
+    company: 'Texas A&M / Laura Avery',
+  },
+  {
+    production: 'CABARET TOUR',
+    role: 'Victor / Trombone / Cliff US',
+    company: 'B.T. McNicholl / Patrick Vaccariello',
+  },
+  {
+    production: 'ONE MINUTE PLAY FEST.',
+    role: 'Ensemble',
+    company: 'Nathaniel P. Claridad',
+  },
+  {
+    production: 'CARNIVAL',
+    role: 'Angelo / Ensemble',
+    company: 'Summer Stock Austin / Scott Thompson',
+  },
+  {
+    production: 'THE ADDAMS FAMILY',
+    role: 'Lurch',
+    company: 'Summer Stock Austin / Scott Thompson',
+  },
+  {
+    production: 'DOG SEES GOD',
+    role: 'CB',
+    company: 'Flexible Grey Theatre Company',
+  },
+]
+
+const workshops: ResumeItem[] = [
+  {
+    production: 'CRUMBS OF JOY',
+    role: 'Sergio',
+    company: 'In Scena! Italian Theatre Festival NY',
+  },
+  {
+    production: 'TWELFTH NIGHT',
+    role: 'Duke Orsino',
+    company: 'The New York Shakespeare Exchange',
+  },
+  {
+    production: 'LADY CAPULET',
+    role: 'Stage Directions',
+    company: '29th St. Playwright Collective',
+  },
+]
+
+const training: ResumeItem[] = [
+  {
+    production: 'Specialization in Acting and Directing',
+    company: 'Texas A&M University, BA Theatre Arts',
+  },
+  { production: 'Basic Stage Combat', company: 'Burton Tudesco' },
+  { production: 'Vocal Coaching', company: 'Tyler Knauf' },
+  {
+    production: 'Movement',
+    company: 'Bluecoats Drum and Bugle Corps / Jim Moore & John Vanderkolff',
+  },
+]
+
+const skills: ResumeItem[] = [
+  {
+    role: 'Musician (Trombone, Guitar), Whistling, Fake Flatulence, Gold, Passport',
+  },
+]
+---
+
+<div class="relative max-w-2xl mx-auto px-6 py-10">
+  <a
+    href="/resume.pdf"
+    download
+    class="absolute top-2 sm:top-4 right-4 z-40 flex items-center gap-1 px-2 py-1 text-xs font-medium text-white bg-neutral-900 rounded shadow hover:bg-neutral-700 transition"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 20 20"
+      fill="currentColor"
+      class="w-3.5 h-3.5"
+    >
+      <path d="M13 10V3H7v7H4l6 6 6-6h-3zM4 18h12v-2H4v2z"></path>
+    </svg>
+    Resume
+  </a>
+
+  <header class="text-center mb-8">
+    <h1 class="text-3xl font-bold tracking-tight">Christopher Rhodes · AEA</h1>
+    <!-- <p class="mt-2 text-sm">
+            Height: 5'7" · Hair: Brown · Eyes: Green · Voice: Alto
+        </p> -->
+    <p class="mt-1 text-sm">
+      Brilliant Talent Management | Julia Schell | julia@brilliant-talent.com
+    </p>
+  </header>
+
+  <ResumeSection title="THEATRE" items={theatre} />
+  <ResumeSection title="WORKSHOPS / READINGS / OTHER" items={workshops} />
+  <ResumeSection title="TRAINING" items={training} />
+  <ResumeSection title="SPECIAL SKILLS" items={skills} />
+</div>

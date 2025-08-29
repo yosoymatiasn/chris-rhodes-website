@@ -1,0 +1,31 @@
+---
+import '../styles/global.css'
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Christopher Rhodes | Actor</title>
+  </head>
+  <body>
+    <header class="w-full h-23 grid items-center">
+      <div class="max-w-4xl mx-auto flex items-center justify-end">
+        <!-- Navigation -->
+        <nav class="space-x-4 font-medium">
+          <a href="/" class="hover: transition">Home</a>
+          <a href="/resume" class="hover: transition">Resume</a>
+          <a href="/media" class="hover: transition">Media</a>
+        </nav>
+      </div>
+    </header>
+    <main class="max-w-4xl mx-auto"><slot /></main></body
+  >
+  <footer class="pt-30 pb-10">
+    <p class="text-center text-gray-400">
+      &copy; {new Date().getFullYear()} Christopher Rhodes
+    </p>
+  </footer>
+</html>
