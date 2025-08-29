@@ -21,6 +21,7 @@ const { title = 'Gallery', images }: Props = Astro.props
       {images[0].caption}
     </h2>
     <Image
+      data-id={0}
       id="featured-image"
       src={images[0].src}
       alt={images[0].alt ?? 'Featured photo'}
@@ -36,7 +37,8 @@ const { title = 'Gallery', images }: Props = Astro.props
       images.map((img: ImageItem, index: number) => (
         <button
           type="button"
-          class={`thumbnail border border-gray-600  rounded-md overflow-hidden transition-all duration-200`}
+          class={`thumbnail cursor-pointer border border-gray-600 hover:border-gray-50  rounded-md overflow-hidden transition-all duration-200`}
+          data-id={index}
           data-src={img.src.src}
           data-alt={img.alt ?? `Photo ${index + 1}`}
           data-caption={img.caption ?? ''}
@@ -66,27 +68,35 @@ const { title = 'Gallery', images }: Props = Astro.props
 
       const thumbnails = document.querySelectorAll('.thumbnail')
 
+      thumbnails[0].classList.add('ring-1')
+
       thumbnails.forEach((thumbEl) => {
         const thumb = thumbEl as HTMLButtonElement
 
         thumb.addEventListener('click', () => {
+          const id = thumb.dataset.id
           const src = thumb.dataset.src
           const alt = thumb.dataset.alt
           const captionText = thumb.dataset.caption
 
-          if (featuredImg && src) {
-            featuredImg.classList.add('opacity-0')
-            setTimeout(() => {
-              featuredImg.src = src
-              featuredImg.alt = alt ?? ''
-              featuredImg.classList.remove('opacity-0')
-            }, 150)
-          }
+          //  skip if already featured
+          if (!featuredImg || featuredImg.dataset.id === id) return
 
+          // Update featured image
+          featuredImg.classList.add('opacity-0')
+          setTimeout(() => {
+            featuredImg.dataset.id = id
+            featuredImg.src = src!
+            featuredImg.alt = alt ?? ''
+            featuredImg.classList.remove('opacity-0')
+          }, 150)
+
+          // Update caption
           if (title) {
             title.textContent = captionText ?? ''
           }
 
+          // Update thumbnail highlight
           thumbnails.forEach((t) => {
             ;(t as HTMLButtonElement).classList.remove('ring-1')
           })
