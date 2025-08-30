@@ -25,7 +25,7 @@ const { title = 'Gallery', images }: Props = Astro.props
       id="featured-image"
       src={images[0].src}
       alt={images[0].alt ?? 'Featured photo'}
-      class="h-[600px] object-cover object-center rounded-xl shadow-xl transition-opacity duration-300S"
+      class="h-[600px] object-cover object-center rounded-xl shadow-xl transition-opacity duration-300"
       format="webp"
       sizes={'100vw'}
       loading="eager"
@@ -78,8 +78,6 @@ const { title = 'Gallery', images }: Props = Astro.props
       const src = thumb.dataset.src
       const alt = thumb.dataset.alt
       const captionText = thumb.dataset.caption
-
-      console.log(src)
 
       //  skip if already featured
       if (!featuredImg || featuredImg.dataset.id === id) return
