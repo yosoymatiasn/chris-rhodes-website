@@ -25,9 +25,9 @@ const { title = 'Gallery', images }: Props = Astro.props
       id="featured-image"
       src={images[0].src}
       alt={images[0].alt ?? 'Featured photo'}
-      class="w-full max-h-[600px] object-contain rounded-xl shadow-xl transition-opacity duration-300"
+      class="h-[600px] object-cover object-center rounded-xl shadow-xl transition-opacity duration-300S"
       format="webp"
-      sizes="100vw"
+      sizes={'100vw'}
       loading="eager"
     />
   </div>
@@ -48,61 +48,63 @@ const { title = 'Gallery', images }: Props = Astro.props
             alt={img.alt ?? `Thumbnail ${index + 1}`}
             class="w-full h-24 object-cover"
             format="webp"
-            sizes="10vw"
+            sizes="(min-width: 768px) 10vw, 30vw"
             loading="lazy"
           />
         </button>
       ))
     }
   </div>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const title = document.getElementById('title')
-      const featuredImg = document.getElementById(
-        'featured-image'
-      ) as HTMLImageElement | null
-      const caption = document.getElementById(
-        'featured-caption'
-      ) as HTMLParagraphElement | null
-
-      const thumbnails = document.querySelectorAll('.thumbnail')
-
-      thumbnails[0].classList.add('ring-1')
-
-      thumbnails.forEach((thumbEl) => {
-        const thumb = thumbEl as HTMLButtonElement
-
-        thumb.addEventListener('click', () => {
-          const id = thumb.dataset.id
-          const src = thumb.dataset.src
-          const alt = thumb.dataset.alt
-          const captionText = thumb.dataset.caption
-
-          //  skip if already featured
-          if (!featuredImg || featuredImg.dataset.id === id) return
-
-          // Update featured image
-          featuredImg.classList.add('opacity-0')
-          setTimeout(() => {
-            featuredImg.dataset.id = id
-            featuredImg.src = src!
-            featuredImg.alt = alt ?? ''
-            featuredImg.classList.remove('opacity-0')
-          }, 150)
-
-          // Update caption
-          if (title) {
-            title.textContent = captionText ?? ''
-          }
-
-          // Update thumbnail highlight
-          thumbnails.forEach((t) => {
-            ;(t as HTMLButtonElement).classList.remove('ring-1')
-          })
-          thumb.classList.add('ring-1')
-        })
-      })
-    })
-  </script>
 </section>
+
+<script>
+  const title = document.getElementById('title')
+  const featuredImg = document.getElementById(
+    'featured-image'
+  ) as HTMLImageElement | null
+  const caption = document.getElementById(
+    'featured-caption'
+  ) as HTMLParagraphElement | null
+
+  const thumbnails = document.querySelectorAll('.thumbnail')
+
+  thumbnails[0].classList.add('ring-1')
+
+  thumbnails.forEach((thumbEl) => {
+    const thumb = thumbEl as HTMLButtonElement
+
+    thumb.addEventListener('click', () => {
+      const id = thumb.dataset.id
+      const src = thumb.dataset.src
+      const alt = thumb.dataset.alt
+      const captionText = thumb.dataset.caption
+
+      console.log(src)
+
+      //  skip if already featured
+      if (!featuredImg || featuredImg.dataset.id === id) return
+
+      // Update featured image
+      featuredImg.classList.add('opacity-0')
+      setTimeout(() => {
+        featuredImg.dataset.id = id
+        featuredImg.src = src!
+        featuredImg.alt = alt ?? ''
+      }, 250)
+      setTimeout(() => {
+        featuredImg.classList.remove('opacity-0')
+      }, 500)
+
+      // Update caption
+      if (title) {
+        title.textContent = captionText ?? ''
+      }
+
+      // Update thumbnail highlight
+      thumbnails.forEach((t) => {
+        ;(t as HTMLButtonElement).classList.remove('ring-1')
+      })
+      thumb.classList.add('ring-1')
+    })
+  })
+</script>
